@@ -1261,7 +1261,7 @@ var alfa1_="",alfa2_="",alfa3_="",alfa4_="",alfa5_="",alfa6_="",alfa7_="",alfa8_
 <td height="0" colspan="2"><span class="header_vars">Downloader: </span><b>-------------</b></td>
 </tr></b>';
     }
-    $quotes = (function_exists('get_magic_quotes_gpc') ? get_magic_quotes_gpc() : '0');
+    $quotes = (function_exists('get_magic_quotes_gpc') ? ((version_compare(phpversion(), '7.3.33', '<='))?get_magic_quotes_gpc() : '0') : '0');
     if ($quotes == "1" or $quotes == "on") {
       $magic = '<b><span class="header_on">ON</span>';
     } else {
