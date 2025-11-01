@@ -2419,7 +2419,9 @@ function create_table($data) {
     foreach ($val as $k => $v) {
       $array[$k] = $v;
     }
+    if(isset($array['id'])){
     echo "<tr><td><div class='tbltxt'>".$array['tdName']."</div></td><td><input type='text' id='".$array['id']."' name='".$array['inputName']."' ".($array['placeholder'] ? 'placeholder' : 'value')."='".$array['inputValue']."' size='".$array['inputSize']."' ".($array['disabled'] ? 'disabled' : '')."></td></tr>";
+    }
   }
   echo '</table>';
 }
