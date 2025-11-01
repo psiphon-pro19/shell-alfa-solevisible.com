@@ -4826,7 +4826,7 @@ function alfasymlink() {
             if ($state == "named.conf") {
               if (@strstr($line, 'zone')) {
                 preg_match_all('#zone "(.*)"#', $line, $data);
-                $domain = isset($data[1][0])?$data[1][0]?' ';
+                $domain = isset($data[1][0])?$data[1][0]:' ';
               } else {
                 continue;
               }
