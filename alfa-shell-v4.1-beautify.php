@@ -5118,7 +5118,7 @@ function alfasql() {
       return false;
     }
   };
-  $db = new DbClass($_POST['type']);
+  $db = new DbClass(isset($_POST['type'])?$_POST['type']:'');
   alfahead();
   $form_visibility = "table";
   if (isset($_POST['sql_host'])) {
@@ -5154,7 +5154,7 @@ function alfasql() {
   } else {
     echo $tmp;
   }
-  $curr_mysql_id = $_POST['current_mysql_id'];
+  $curr_mysql_id = isset($_POST['current_mysql_id'])?$_POST['current_mysql_id']:'';
   echo "</td>
 <td><button onclick='fs(this);return false;' class='db-opt-id db-connect-btn'>Connect</button></td>
 <td><input type='checkbox' name='sql_count' value='on'" . (empty($_POST['sql_count']) ? '' : ' checked') . "> <div class=\"txtfont\">count the number of rows</div></td>
