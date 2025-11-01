@@ -1761,7 +1761,7 @@ function alfacoldumper() {
   if (!empty($dbname)) {
     $db = @mysqli_connect($host, $username, $password, $dbname);
   }
-  if (count($selected_data) > 0) {
+  if (!is_null($selected_data) && count($selected_data) > 0) {
     if ($db) {
       if (!is_dir($dfile)) {
         $dfile = $GLOBALS['cwd'];
@@ -1807,7 +1807,7 @@ function alfacoldumper() {
       echo "<center><font color='#00FF00'>".$tbls."</font></center>";
     }
   }
-  if (!empty($dbname) && count($selected_data) == 0) {
+  if (!empty($dbname) && !is_null($selected_data) && count($selected_data) == 0) {
     //echo __pre();
     if ($db) {
       echo("<hr><div style='text-align:center;margin-bottom:5px;font-weight:bolder;'><span>[ Select your tables and columns for dumping data ]</span></div>");
